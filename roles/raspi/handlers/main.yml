@@ -1,0 +1,2 @@
+- name: setupcon
+  command: setupcon
