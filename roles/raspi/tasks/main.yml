@@ -1,0 +1,29 @@
+- name: 'change repository mirror'
+  replace:
+    path:     '{{ item }}'
+    regexp:   'http://mirrordirector.raspbian.org/raspbian/'
+    replace:  'http://ftp.jaist.ac.jp/raspbian/'
+  become: yes
+  with_items:
+    - '/etc/apt/sources.list'
+
+- name: 'apt install'
+  apt:
+    name: '{{ item }}'
+    update_cache: yes
+    install_recommends: no
+  with_items:
+    - tree
+    - screen
+
+
+# https://qiita.com/yyano/items/72835c1bbf479f1f3be2
+
+- name: Create keyboard keymap file.
+  copy:
+    src:    keyboard
+    dest:   /etc/default/keyboard
+    owner:  root
+    group:  root
+    mode:   0644
+  notify: setupcon

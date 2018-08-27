@@ -1,0 +1,8 @@
+[deskmini]
+192.168.11.200
+
+[deskmini:vars]
+ansible_user=ohtacaesar
+ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+
